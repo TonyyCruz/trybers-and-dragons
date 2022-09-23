@@ -2,6 +2,7 @@ import Fighter from './Fighter/Fighter';
 import Race, { Elf } from './Races';
 import Archetypes, { Mage } from './Archetypes';
 import Energy from './Energy';
+import SimpleFighter from './Fighter/SimpleFighter';
 
 export default class Character implements Fighter {
   private _race!: Race;
@@ -68,11 +69,11 @@ export default class Character implements Fighter {
     return { type_: this._energy.type_, amount: this._energy.amount };
   }
 
-  public attack(enemy: Fighter): void {
+  public attack(enemy: SimpleFighter): void {
     enemy.receiveDamage(this._strength);
   }
 
-  public special(enemy: Fighter): void {
+  public special(enemy: SimpleFighter): void {
     const energyPower = Character.randomValue(this._energy.amount);
     const luck = Character.randomValue(5);
     const badLuck = Character.randomValue(5);
