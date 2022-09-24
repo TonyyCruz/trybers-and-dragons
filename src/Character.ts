@@ -23,6 +23,16 @@ export default class Character implements Fighter {
     return Math.floor((Math.random() * max) + 1);
   }
 
+  private randomDamage(): number {
+    const energyPower = Character.randomValue(this._energy.amount);
+    const luck = Character.randomValue(5);
+    const badLuck = Character.randomValue(5);
+
+    this._energy.amount -= energyPower;
+
+    return (energyPower * this._strength * luck) / 10 + badLuck;
+  }
+
   private characterInitialStatus(): void {
     this._maxLifePoints = this._race.maxLifePoints / 2;
     this._lifePoints = this._maxLifePoints;
@@ -73,15 +83,22 @@ export default class Character implements Fighter {
     enemy.receiveDamage(this._strength);
   }
 
-  public special(enemy: SimpleFighter): void {
-    const energyPower = Character.randomValue(this._energy.amount);
-    const luck = Character.randomValue(5);
-    const badLuck = Character.randomValue(5);
-    const damage = (energyPower * this._strength * luck) / 10 + badLuck;
+  public special(): void {
+    const recover = this.randomDamage() * 0.9;
 
-    this._energy.amount -= energyPower;
+    this._lifePoints += recover;
+  }
+
+  public focusAttack(enemy: SimpleFighter): void {
+    const damage = this.randomDamage();
 
     enemy.receiveDamage(damage);
+  }
+
+  public areaAttack(enemy: SimpleFighter[]): void {
+    const damage = this.randomDamage();
+
+    enemy.forEach((e) => e.receiveDamage(damage * 0.7));
   }
 
   public receiveDamage(attackPoints: number): number {
