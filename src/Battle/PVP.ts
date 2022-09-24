@@ -29,7 +29,14 @@ export default class PVP extends Battle {
   }
 
   fight():number {
-    this.player1Attack();
+    const random = Math.floor((Math.random() * 10) + 1);
+
+    if (random % 2) {
+      this.player1Attack();
+    } else {
+      this.player2Attack();
+    }
+
     return super.fight();
   }
 
