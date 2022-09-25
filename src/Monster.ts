@@ -2,7 +2,7 @@ import SimpleFighter from './Fighter/SimpleFighter';
 
 export default class Monster implements SimpleFighter {
   protected _lifePoints = 85;
-  private _strength = 63;
+  protected _strength = 63;
 
   get lifePoints(): number { return this._lifePoints; }
 

@@ -83,10 +83,16 @@ export default class Character implements Fighter {
     enemy.receiveDamage(this._strength);
   }
 
-  public special(): void {
-    const recover = this.randomAbilityValue();
+  public special(enemy: Fighter): void {
+    const specialValue = this.randomAbilityValue();
 
-    this._lifePoints += recover;
+    if (enemy) {
+      this._strength += specialValue;
+      this.attack(enemy);
+      this._strength -= specialValue;
+    }
+
+    this._lifePoints += specialValue;
   }
 
   public focusAttack(enemy: SimpleFighter): void {
