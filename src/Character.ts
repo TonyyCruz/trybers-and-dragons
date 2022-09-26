@@ -83,13 +83,14 @@ export default class Character implements Fighter {
     enemy.receiveDamage(this._strength);
   }
 
-  public special(enemy: Fighter): void {
+  public special(enemy?: Fighter): void {
     const specialValue = this.randomAbilityValue();
 
     if (enemy) {
       this._strength += specialValue;
       this.attack(enemy);
       this._strength -= specialValue;
+      return;
     }
 
     this._lifePoints += specialValue;
