@@ -21,6 +21,8 @@
 
 - **[TypeScript](https://www.typescriptlang.org/pt/)**
 
+- **[POO](https://www.freecodecamp.org/portuguese/news/programacao-orientada-a-objetos-em-javascript-explicada-com-exemplos/)**
+
 - **[SOLID](https://www.treinaweb.com.br/blog/principios-solid-single-responsability-principle)**
 
 ---
